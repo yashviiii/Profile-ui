@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:profile_ui/screens/reels_screen.dart';
+import 'package:profile_ui/widgets/appbar.dart';
 import '../widgets/profile_header_widget.dart';
 import 'gallery_screen.dart';
 import 'igtv_screen.dart';
@@ -22,49 +23,50 @@ class _ProfileBaseScreenState extends State<ProfileBaseScreen> {
               ),
             ),
           ),
-          child: AppBar(
-             leading:
-             Builder(builder: (BuildContext context) {
-              return IconButton(
-                  onPressed: (){},
-                  icon:
-              Image.asset(
-                'assets/images/logo.png',
-                height: 40,
-                width: 50,
-              ),
-              );
-            }
-            ),
-            backgroundColor: Colors.white,
-            title: Center(
-              child: Text(
-                "Socio-Club",
-                style:
-                    TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w900,
-                        fontStyle: FontStyle.italic,
-                    ),
-              ),
-            ),
-            actions: [
-              // IconButton(
-              //   icon: Icon(
-              //     Icons.add_box_outlined,
-              //     color: Colors.black,
-              //   ),
-              //   onPressed: () => print("Add"),
-              // ),
-              IconButton(
-                icon: Icon(
-                  Icons.settings,
-                  color: Colors.black,
-                ),
-                onPressed: () => print("Add"),
-              )
-            ],
-          ),
+          child: appbar(context)
+          // AppBar(
+          //    leading:
+          //    Builder(builder: (BuildContext context) {
+          //     return IconButton(
+          //         onPressed: (){},
+          //         icon:
+          //     Image.asset(
+          //       'assets/images/logo.png',
+          //       height: 40,
+          //       width: 50,
+          //     ),
+          //     );
+          //   }
+          //   ),
+          //   backgroundColor: Colors.white,
+          //   title: Center(
+          //     child: Text(
+          //       "Socio-Club",
+          //       style:
+          //           TextStyle(
+          //               color: Colors.black,
+          //               fontWeight: FontWeight.w900,
+          //               fontStyle: FontStyle.italic,
+          //           ),
+          //     ),
+          //   ),
+          //   actions: [
+          //     // IconButton(
+          //     //   icon: Icon(
+          //     //     Icons.add_box_outlined,
+          //     //     color: Colors.black,
+          //     //   ),
+          //     //   onPressed: () => print("Add"),
+          //     // ),
+          //     IconButton(
+          //       icon: Icon(
+          //         Icons.settings,
+          //         color: Colors.black,
+          //       ),
+          //       onPressed: () => print("Add"),
+          //     )
+          //   ],
+          // ),
         ),
       ),
       body:

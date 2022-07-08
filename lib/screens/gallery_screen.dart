@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_masonry_view/flutter_masonry_view.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:profile_ui/widgets/appbar.dart';
 import 'package:transparent_image/transparent_image.dart';
+
+import '../widgets/PostsView.dart';
 
 class Gallery extends StatefulWidget {
   @override
@@ -15,15 +18,15 @@ class _GalleryState extends State<Gallery> {
     'https://placeimg.com/640/480/arch',
     'https://placeimg.com/640/680/nature',
     'https://placeimg.com/640/480/people',
-    'https://placeimg.com/640/480/tech',
+    'https://placeimg.com/640/680/tech',
     'https://placeimg.com/640/480/animals',
-    'https://placeimg.com/640/480/arch',
+    'https://placeimg.com/640/680/arch',
     'https://placeimg.com/640/480/nature',
-    'https://placeimg.com/640/480/people',
+    'https://placeimg.com/640/680/people',
     'https://placeimg.com/640/480/tech',
-    'https://placeimg.com/640/480/nature',
+    'https://placeimg.com/640/680/nature',
     'https://placeimg.com/640/480/people',
-    'https://placeimg.com/640/480/tech',
+    'https://placeimg.com/640/680/tech',
     'https://placeimg.com/640/480/animals',
     'https://placeimg.com/640/480/arch',
     'https://placeimg.com/640/480/nature',
@@ -43,21 +46,27 @@ class _GalleryState extends State<Gallery> {
             return Container(
               decoration: BoxDecoration(
                   color: Colors.transparent,
-                  borderRadius: BorderRadius.all(
-                      Radius.circular(15))
-              ),
+                  borderRadius: BorderRadius.all(Radius.circular(15))),
               child: ClipRRect(
-                borderRadius: BorderRadius.all(
-                    Radius.circular(15)),
-                child: FadeInImage.memoryNetwork(
-                  placeholder: kTransparentImage,
-                  image: imageUrls[index], fit: BoxFit.cover,
+                borderRadius: BorderRadius.all(Radius.circular(15)),
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                PostsView(url: imageUrls[index],caption: 'I’ll take my next treat right meow',likes: 23,shares: 23,)));
+                  },
+                  child: FadeInImage.memoryNetwork(
+                    placeholder: kTransparentImage,
+                    image: imageUrls[index],
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
             );
           },
-        )
-    );
+        ));
   }
 
   Widget _createGridTileWidget(String url) => Builder(
@@ -134,8 +143,17 @@ class _GalleryState extends State<Gallery> {
       );
 }
 
+Widget _postsView(String url) {
+  return FadeInImage.memoryNetwork(
+    placeholder: kTransparentImage,
+    image: url,
+    fit: BoxFit.cover,
+  );
+}
+
 class AnimatedDialog extends StatefulWidget {
-  const AnimatedDialog({required Key key, required this.child}) : super(key: key);
+  const AnimatedDialog({required Key key, required this.child})
+      : super(key: key);
 
   final Widget child;
 
@@ -180,3 +198,346 @@ class AnimatedDialogState extends State<AnimatedDialog>
     );
   }
 }
+
+// class PostsView extends StatelessWidget {
+//   final String url;
+//
+//   const PostsView({Key? key, required this.url}) : super(key: key);
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       child: Column(
+//         mainAxisAlignment: MainAxisAlignment.center,
+//         children: [
+//           Center(
+//             child: Stack(
+//               children: [
+//                 Container(
+//                     decoration: BoxDecoration(
+//                       borderRadius: BorderRadius.circular(20),
+//                       boxShadow: [
+//                         BoxShadow(
+//                             blurRadius: 10.0,
+//                             offset: Offset(3, 3),
+//                             color: Colors.blueGrey
+//                         ),
+//                       ]
+//                     ),
+//                     child: ClipRRect(
+//                         child: Image.network(url,),
+//                       borderRadius: BorderRadius.circular(20),
+//                     )
+//                 ),
+//           Positioned(
+//             bottom: 40,
+//             right: 10,
+//             child: Column(
+//             children: const [
+//                Icon(Icons.thumb_up_alt_outlined),
+//               SizedBox(height: 5,),
+//               Material(
+//                 color: Colors.transparent,
+//                 child: Text(
+//                     '23',
+//                   style: TextStyle(
+//                     color: Colors.black,
+//                     fontSize: 12,
+//                   ),
+//                 ),
+//               ),
+//               SizedBox(height: 10,),
+//               Icon(Icons.ios_share_rounded),
+//               SizedBox(height: 5,),
+//               Material(
+//                 color: Colors.transparent,
+//                 child: Text(
+//                   '23',
+//                   style: TextStyle(
+//                     color: Colors.black,
+//                     fontSize: 12,
+//                   ),
+//                 ),
+//               ),
+//           ])
+//           ),
+//               ],
+//             ),
+//           ),
+//           SizedBox(height: 100,),
+//           Container(
+//             child: Center(
+//               child: Material(
+//                 color: Colors.transparent,
+//                 child: Text(
+//                   'I’ll take my next treat right meow',
+//                   style: TextStyle(
+//                       color: Colors.white
+//                   ),
+//                 ),
+//               ),
+//             ),
+//           )
+//         ],
+//       ),
+//     );
+      // child: Container(
+      //         height: 500,
+      //         width: 393,
+      //         decoration: BoxDecoration(
+      //           color: Colors.white,
+      //           borderRadius: BorderRadius.circular(20)
+      //         ),
+      //         child: Column(
+      //           children: [
+      //             SizedBox(height: 20,),
+      //             Container(
+      //               width: 350,
+      //                 decoration: BoxDecoration(
+      //                   borderRadius: BorderRadius.circular(20),
+      //                   boxShadow: [
+      //                     BoxShadow(
+      //                         blurRadius: 10.0,
+      //                         offset: Offset(8, 8),
+      //                         color: Colors.grey
+      //                     ),
+      //                   ]
+      //                 ),
+      //                 child: ClipRRect(
+      //                     child: Image.network(url,width: 350,),
+      //                   borderRadius: BorderRadius.circular(20),
+      //                 )
+      //             ),
+      //             SizedBox(height: 10,),
+      //             Row(
+      //               children: [
+      //                 SizedBox(width: 35,),
+      //                 Icon(Icons.thumb_up_alt_outlined),
+      //                 SizedBox(width: 10,),
+      //                 Material(
+      //                   color: Colors.transparent,
+      //                   child: Text(
+      //                     '23',
+      //                     style: TextStyle(
+      //                       color: Colors.black,
+      //                       fontSize: 12,
+      //                     ),
+      //                   ),
+      //                 ),
+      //                 SizedBox(width: 30,),
+      //                 Icon(Icons.share),
+      //                 SizedBox(width: 10,),
+      //                 Material(
+      //                   color: Colors.transparent,
+      //                   child: Text(
+      //                     '23',
+      //                     style: TextStyle(
+      //                       color: Colors.black,
+      //                       fontSize: 12,
+      //                     ),
+      //                   ),
+      //                 ),
+      //               ],
+      //             ),
+      //             SizedBox(height: 15,),
+      //             Material(
+      //               color: Colors.transparent,
+      //               child: Container(
+      //                 decoration: BoxDecoration(
+      //                   color: Colors.white,
+      //                   borderRadius: BorderRadius.circular(10),
+      //                   boxShadow: [
+      //                     BoxShadow(
+      //                         blurRadius: 10.0,
+      //                         offset: Offset(1, 1),
+      //                         color: Colors.grey
+      //                     ),
+      //                   ]
+      //                 ),
+      //                 width: 330,
+      //                 height: 40,
+      //                 child: Padding(
+      //                   padding: const EdgeInsets.all(8.0),
+      //                   child: Text(
+      //                     'I’ll take my next treat right meow',
+      //                     style: TextStyle(
+      //                       color: Colors.black,
+      //                     ),
+      //                   ),
+      //                 ),
+      //               ),
+      //             ),
+      //           ],
+      //         ),
+      //       ),
+            // Positioned(
+            //   bottom: 0,
+            //   child: Container(
+            //     height: 60,
+            //     width: 393,
+            //     decoration: BoxDecoration(
+            //         color: Colors.white24,
+            //       borderRadius: BorderRadius.vertical(top: Radius.circular(10))
+            //     ),
+            //     child: Center(
+            //       child: Material(
+            //         color: Colors.transparent,
+            //         child: Text(
+            //           'I’ll take my next treat right meow',
+            //           style: TextStyle(
+            //             color: Colors.black
+            //           ),
+            //         ),
+            //       ),
+            //     ),
+            //   ),
+            // ),
+            // Positioned(
+            //   bottom: 80,
+            //   right: 10,
+            //   child: Column(
+            //   children: const [
+            //      Icon(Icons.thumb_up_alt_outlined),
+            //     SizedBox(height: 5,),
+            //     Material(
+            //       color: Colors.transparent,
+            //       child: Text(
+            //           '23',
+            //         style: TextStyle(
+            //           color: Colors.black,
+            //           fontSize: 12,
+            //         ),
+            //       ),
+            //     ),
+            //     SizedBox(height: 10,),
+            //     Icon(Icons.share),
+            //     SizedBox(height: 5,),
+            //     Material(
+            //       color: Colors.transparent,
+            //       child: Text(
+            //         '23',
+            //         style: TextStyle(
+            //           color: Colors.black,
+            //           fontSize: 12,
+            //         ),
+            //       ),
+            //     ),
+            // ])
+            // ),
+    //);
+      // Scaffold(
+      //   appBar: PreferredSize(
+      //       preferredSize: Size.fromHeight(40),
+      //       child: Container(
+      //         decoration: BoxDecoration(
+      //           border: Border(
+      //             bottom: BorderSide(),
+      //           ),
+      //         ),
+      //         child: appbar(context),
+      //       )),
+      //   body: Container(
+      //       width: double.infinity,
+      //       decoration: BoxDecoration(
+      //         color: Colors.white,
+      //         borderRadius: BorderRadius.circular(25),
+      //         boxShadow: [
+      //           BoxShadow(
+      //             color: Colors.blueGrey,
+      //             offset: const Offset(
+      //               5.0,
+      //               5.0,
+      //             ),
+      //             blurRadius: 10.0,
+      //             spreadRadius: 2.0,
+      //           ), //BoxShadow
+      //           // BoxShadow(
+      //           //   color: Colors.white,
+      //           //   offset: const Offset(0.0, 0.0),
+      //           //   blurRadius: 0.0,
+      //           //   spreadRadius: 0.0,
+      //           // ), //BoxShadow
+      //         ],
+      //       ),
+      //       child: Padding(
+      //         padding:
+      //             const EdgeInsets.only(left: 18.0, right: 18.0, bottom: 10),
+      //         child: Column(
+      //             crossAxisAlignment: CrossAxisAlignment.start,
+      //             children: [
+      //               SizedBox(
+      //                 height: 20,
+      //               ),
+      //               Row(
+      //                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      //                   crossAxisAlignment: CrossAxisAlignment.center,
+      //                   children: [
+      //                     Container(
+      //                       decoration: BoxDecoration(
+      //                           borderRadius: BorderRadius.circular(53),
+      //                           color: Colors.white,
+      //                           boxShadow: const [
+      //                             BoxShadow(
+      //                                 blurRadius: 5.0,
+      //                                 offset: Offset(-5, -5),
+      //                                 color: Colors.white),
+      //                             BoxShadow(
+      //                                 blurRadius: 5.0,
+      //                                 offset: Offset(2, 2),
+      //                                 color: Colors.black45)
+      //                           ]),
+      //                       child: CircleAvatar(
+      //                         radius: 22,
+      //                         backgroundColor: Color(0xff74EDED),
+      //                         backgroundImage: NetworkImage(
+      //                             "https://placeimg.com/640/480/people"),
+      //                       ),
+      //                     ),
+      //                     Container(
+      //                       height: 30,
+      //                       width: 100,
+      //                       decoration: BoxDecoration(
+      //                           borderRadius: BorderRadius.circular(8),
+      //                           color: Colors.white,
+      //                           boxShadow: const [
+      //                             BoxShadow(
+      //                                 blurRadius: 5.0,
+      //                                 offset: Offset(-5, -5),
+      //                                 color: Colors.white),
+      //                             BoxShadow(
+      //                                 blurRadius: 5.0,
+      //                                 offset: Offset(0, 3),
+      //                                 color: Colors.grey)
+      //                           ]),
+      //                       child: Center(
+      //                         child: Text(
+      //                           "John.Doe",
+      //                           style: TextStyle(
+      //                             color: Colors.black,
+      //                             fontWeight: FontWeight.bold,
+      //                             fontSize: 16,
+      //                             letterSpacing: 0.4,
+      //                           ),
+      //                         ),
+      //                       ),
+      //                     ),
+      //                     Icon(Icons.more_horiz)
+      //                   ]),
+      //               SizedBox(
+      //                 height: 20,
+      //               ),
+      //               Container(
+      //                 decoration: BoxDecoration(
+      //                     color: Colors.transparent,
+      //                     borderRadius: BorderRadius.all(Radius.circular(15))),
+      //                   child: ClipRRect(
+      //                       borderRadius: BorderRadius.all(Radius.circular(15)),
+      //                     child: Image.network(url,
+      //                       fit: BoxFit.fitHeight,
+      //                     ),
+      //               )
+      //               )
+      //             ]),
+      //       )));
+  // }
+// }
