@@ -55,7 +55,7 @@ class _GalleryState extends State<Gallery> {
                         context,
                         MaterialPageRoute(
                             builder: (context) =>
-                                PostsView(url: imageUrls[index],caption: 'I’ll take my next treat right meow',likes: 23,shares: 23,)));
+                                PostsView(url: imageUrls[index],likes: 23,shares: 23,)));
                   },
                   child: FadeInImage.memoryNetwork(
                     placeholder: kTransparentImage,
